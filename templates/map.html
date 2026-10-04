@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}Live Map - Disaster Management System{% endblock %}
+
+{% block head_extra %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+{% endblock %}
+
+{% block content %}
+<div class="map-header">
+    <h1>Live Disaster Map</h1>
+    <p>Real-time view of reported incidents, shelters, and resource zones.</p>
+</div>
+
+<div class="map-legend">
+    <span class="legend-item"><span class="dot dot-red"></span> Incident</span>
+    <span class="legend-item"><span class="dot dot-blue"></span> Shelter</span>
+    <span class="legend-item"><span class="dot dot-green"></span> Resource Center</span>
+</div>
+
+<div id="map"></div>
+{% endblock %}
+
+{% block scripts %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script src="{{ url_for('static', filename='map.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}Login - Disaster Management System{% endblock %}
+
+{% block content %}
+<div class="auth-container">
+    <h1>Login</h1>
+
+    {% if error %}
+        <p class="auth-error">{{ error }}</p>
+    {% endif %}
+
+    <form method="POST" id="loginForm">
+        <input type="email" name="email" id="loginEmail" placeholder="Email" required>
+
+        <div class="password-wrapper">
+            <input type="password" name="password" id="loginPassword" placeholder="Password" required>
+            <span class="toggle-password" onclick="togglePassword('loginPassword', this)">👁️</span>
+        </div>
+
+        <button type="submit">Login</button>
+    </form>
+    <p class="auth-switch">Don't have an account? <a href="/register">Register here</a></p>
+    <p class="auth-switch"><a href="/forgot-password">Forgot Password?</a></p>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+{% endblock %}

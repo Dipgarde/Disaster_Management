@@ -1,0 +1,118 @@
+{% extends "base.html" %}
+
+{% block title %}Disaster Management System{% endblock %}
+
+{% block content %}
+    <section class="hero">
+        <div class="hero-badge">🟢 System Active — Monitoring in Real Time</div>
+        <h1>Disaster Management<br>& Emergency Response</h1>
+        <p class="hero-subtitle">
+            Real-time monitoring, rapid citizen reporting, and coordinated response —
+            built to help communities stay safe before, during, and after emergencies.
+        </p>
+        <div class="hero-buttons">
+            <a href="/report" class="btn btn-primary">🚨 Report an Incident</a>
+            <a href="/dashboard" class="btn btn-secondary">📊 View Live Dashboard</a>
+        </div>
+    </section>
+
+    <section class="stats">
+        <div class="stat-card">
+            <div class="stat-number">24/7</div>
+            <div class="stat-label">Continuous Monitoring</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number">Real-Time</div>
+            <div class="stat-label">Alert Dispatch</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number">Live</div>
+            <div class="stat-label">Resource Tracking</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number">Community</div>
+            <div class="stat-label">Powered Reports</div>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="section-heading">
+            <span class="eyebrow">CAPABILITIES</span>
+            <h2>What This System Does</h2>
+            <p class="section-sub">Every core feature works together to reduce response time when it matters most.</p>
+        </div>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <div class="feature-icon">📍</div>
+                <h3>Live Incident Reporting</h3>
+                <p>Citizens report incidents instantly with location details, feeding directly into the response system.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🗺️</div>
+                <h3>Interactive Disaster Map</h3>
+                <p>Visualize affected zones, shelters, and resources on a live, interactive map.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🚨</div>
+                <h3>Smart Alert System</h3>
+                <p>Rule-based severity classification triggers alerts automatically based on real conditions.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <h3>Authority Dashboard</h3>
+                <p>Live analytics and resource tracking help authorities coordinate faster, better decisions.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🧭</div>
+                <h3>Shortest Route Routing</h3>
+                <p>Graph-based algorithms calculate the fastest safe route to shelters and resources.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🤝</div>
+                <h3>Volunteer Coordination</h3>
+                <p>Skilled volunteers are matched to the right disaster response role, automatically.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="how-it-works">
+        <div class="section-heading">
+            <span class="eyebrow">PROCESS</span>
+            <h2>How It Works</h2>
+        </div>
+        <div class="steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <h3>Report</h3>
+                <p>A citizen reports an incident with location and details.</p>
+            </div>
+            <div class="step-arrow">→</div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <h3>Classify</h3>
+                <p>The system evaluates severity using live data and rule-based logic.</p>
+            </div>
+            <div class="step-arrow">→</div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <h3>Alert</h3>
+                <p>Authorities and nearby residents are notified instantly.</p>
+            </div>
+            <div class="step-arrow">→</div>
+            <div class="step">
+                <div class="step-number">4</div>
+                <h3>Respond</h3>
+                <p>Resources and volunteers are dispatched along the safest route.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta">
+        <h2>Ready to help build a safer community?</h2>
+        <p>Report an incident now or explore the live dashboard to see the system in action.</p>
+        <div class="hero-buttons">
+            <a href="/report" class="btn btn-primary">Report an Incident</a>
+            <a href="/register" class="btn btn-outline-light">Create an Account</a>
+        </div>
+    </section>
+{% endblock %}

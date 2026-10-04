@@ -1,0 +1,192 @@
+{% extends "base.html" %}
+
+{% block title %}Command Center - Disaster Management System{% endblock %}
+
+{% block content %}
+    <div class="dash-header">
+        <div class="dash-title-row">
+            <div>
+                <h1>🎛️ Disaster Command Center</h1>
+                <p>Live overview of incidents, resources, and response activity.</p>
+            </div>
+            <div class="live-indicator">🟢 LIVE</div>
+        </div>
+    </div>
+
+    <div class="dash-stats-grid">
+        <div class="dash-stat-card stat-red">
+            <div class="dash-stat-icon">🌪️</div>
+            <div class="dash-stat-value">04</div>
+            <div class="dash-stat-label">Active Disasters</div>
+        </div>
+        <div class="dash-stat-card stat-orange">
+            <div class="dash-stat-icon">📍</div>
+            <div class="dash-stat-value">07</div>
+            <div class="dash-stat-label">Critical Zones</div>
+        </div>
+        <div class="dash-stat-card stat-red">
+            <div class="dash-stat-icon">🆘</div>
+            <div class="dash-stat-value">32</div>
+            <div class="dash-stat-label">SOS Requests</div>
+        </div>
+        <div class="dash-stat-card stat-blue">
+            <div class="dash-stat-icon">🚑</div>
+            <div class="dash-stat-value">11</div>
+            <div class="dash-stat-label">Available Ambulances</div>
+        </div>
+        <div class="dash-stat-card stat-green">
+            <div class="dash-stat-icon">🙋</div>
+            <div class="dash-stat-value">86</div>
+            <div class="dash-stat-label">Active Volunteers</div>
+        </div>
+        <div class="dash-stat-card stat-teal">
+            <div class="dash-stat-icon">🏠</div>
+            <div class="dash-stat-value">14</div>
+            <div class="dash-stat-label">Open Shelters</div>
+        </div>
+    </div>
+
+    <div class="dash-content">
+
+        <div class="dash-quick-actions">
+            <a href="/report" class="qa-btn qa-red">🚨 Report Incident</a>
+            <a href="/map" class="qa-btn qa-blue">🗺️ Open Live Map</a>
+            <button class="qa-btn qa-purple" onclick="alert('Simulation mode coming soon!')">🧪 Run Drill Simulation</button>
+            <button class="qa-btn qa-outline" onclick="alert('Export coming soon!')">📤 Export Report</button>
+        </div>
+
+        <div class="dash-grid-2">
+            <div class="dash-section">
+                <div class="section-title-row">
+                    <h2>Incident Trend (Last 7 Days)</h2>
+                </div>
+                <canvas id="trendChart" height="120"></canvas>
+            </div>
+
+            <div class="dash-section">
+                <div class="section-title-row">
+                    <h2>Severity Breakdown</h2>
+                </div>
+                <canvas id="severityChart" height="120"></canvas>
+            </div>
+        </div>
+
+        <div class="dash-section">
+            <div class="section-title-row">
+                <h2>🆘 Live SOS Requests</h2>
+                <span class="badge badge-high">32 Pending</span>
+            </div>
+            <table class="dash-table">
+                <thead>
+                    <tr>
+                        <th>Requester</th>
+                        <th>Location</th>
+                        <th>Type</th>
+                        <th>Priority</th>
+                        <th>Time</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Rahul S.</td>
+                        <td>Gangapur Road</td>
+                        <td>Medical</td>
+                        <td><span class="badge badge-high">Critical</span></td>
+                        <td>2 min ago</td>
+                        <td><button class="mini-btn">Dispatch</button></td>
+                    </tr>
+                    <tr>
+                        <td>Sneha P.</td>
+                        <td>Panchavati</td>
+                        <td>Rescue</td>
+                        <td><span class="badge badge-high">Critical</span></td>
+                        <td>6 min ago</td>
+                        <td><button class="mini-btn">Dispatch</button></td>
+                    </tr>
+                    <tr>
+                        <td>Amit K.</td>
+                        <td>College Road</td>
+                        <td>Shelter</td>
+                        <td><span class="badge badge-medium">Moderate</span></td>
+                        <td>14 min ago</td>
+                        <td><button class="mini-btn">Dispatch</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="dash-section">
+            <h2>Recent Incident Reports</h2>
+            <table class="dash-table">
+                <thead>
+                    <tr>
+                        <th>Description</th>
+                        <th>Location</th>
+                        <th>Severity</th>
+                        <th>Reported At</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Heavy flooding near main road</td>
+                        <td>Nashik Central</td>
+                        <td><span class="badge badge-high">High</span></td>
+                        <td>10 min ago</td>
+                        <td><span class="status status-active">Active</span></td>
+                    </tr>
+                    <tr>
+                        <td>Fallen tree blocking traffic</td>
+                        <td>Panchavati</td>
+                        <td><span class="badge badge-medium">Medium</span></td>
+                        <td>25 min ago</td>
+                        <td><span class="status status-active">Active</span></td>
+                    </tr>
+                    <tr>
+                        <td>Minor power outage reported</td>
+                        <td>College Road</td>
+                        <td><span class="badge badge-low">Low</span></td>
+                        <td>1 hour ago</td>
+                        <td><span class="status status-resolved">Resolved</span></td>
+                    </tr>
+                    <tr>
+                        <td>Waterlogging in residential area</td>
+                        <td>Gangapur Road</td>
+                        <td><span class="badge badge-medium">Medium</span></td>
+                        <td>2 hours ago</td>
+                        <td><span class="status status-active">Active</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="dash-section">
+            <h2>Resource Status</h2>
+            <div class="resource-grid">
+                <div class="resource-card">
+                    <span class="resource-name">🚑 Ambulances Available</span>
+                    <span class="resource-value">11 / 15</span>
+                </div>
+                <div class="resource-card">
+                    <span class="resource-name">🏠 Shelter Capacity Used</span>
+                    <span class="resource-value">58%</span>
+                </div>
+                <div class="resource-card">
+                    <span class="resource-name">🙋 Active Volunteers</span>
+                    <span class="resource-value">86</span>
+                </div>
+                <div class="resource-card">
+                    <span class="resource-name">⛽ Fuel Reserve</span>
+                    <span class="resource-value">72%</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}
+
+{% block scripts %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+<script src="{{ url_for('static', filename='dashboard.js') }}"></script>
+{% endblock %}

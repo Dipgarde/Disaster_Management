@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+{% block title %}Simulation Mode - Disaster Management System{% endblock %}
+
+{% block head_extra %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+{% endblock %}
+
+{% block content %}
+<div class="sim-banner">🧪 SIMULATION MODE: all events are fake, for drills and training only.</div>
+
+<div class="sim-layout">
+  <div class="sim-left">
+    <div class="dash-section">
+      <h2>1. Inject Disaster</h2>
+      <label class="sim-label">Type</label>
+      <select id="simType" class="admin-select sim-input">
+        <option>Flood</option><option>Earthquake</option><option>Cyclone</option><option>Fire</option><option>Landslide</option>
+      </select>
+      <label class="sim-label">Severity: Level <span id="severityLabel">3</span></label>
+      <input type="range" id="simSeverity" min="1" max="5" value="3" class="sim-range">
+      <label class="sim-label">Location</label>
+      <select id="simLocation" class="admin-select sim-input">
+        <option value="central">Nashik Central</option><option value="panch">Panchavati</option>
+        <option value="gangapur">Gangapur Road</option><option value="college">College Road</option>
+      </select>
+      <label class="sim-label">Alert Language</label>
+      <select id="simLang" class="admin-select sim-input">
+        <option value="en">English</option><option value="hi">हिन्दी</option><option value="mr">मराठी</option>
+      </select>
+      <button id="injectBtn" class="qa-btn qa-purple sim-btn">⚡ Inject Disaster</button>
+      <button id="resetBtn" class="qa-btn qa-outline sim-btn">↺ Reset</button>
+    </div>
+    <div class="dash-section">
+      <h2>System Reaction Log</h2>
+      <ul id="simLog" class="sim-log"><li class="sim-log-empty">No events yet.</li></ul>
+    </div>
+  </div>
+
+  <div class="sim-right">
+    <div id="alertBanner" class="alert-banner" style="display:none"></div>
+    <div id="simMap"></div>
+    <div class="sim-summary">
+      <div class="sim-sum-card"><div class="sim-sum-value" id="sumClass">-</div><div class="sim-sum-label">Class</div></div>
+      <div class="sim-sum-card"><div class="sim-sum-value" id="sumRadius">-</div><div class="sim-sum-label">Alert Radius</div></div>
+      <div class="sim-sum-card"><div class="sim-sum-value" id="sumAmb">-</div><div class="sim-sum-label">Ambulances</div></div>
+      <div class="sim-sum-card"><div class="sim-sum-value" id="sumShel">-</div><div class="sim-sum-label">Shelters</div></div>
+    </div>
+
+    <div class="mod-grid">
+      <div class="dash-section"><h2>2. Safe Route (Dijkstra)</h2>
+        <button class="mini-btn" id="routeBtn">Find route to shelter</button>
+        <div id="routeOut" class="mod-out"></div></div>
+      <div class="dash-section"><h2>3. Trust-Weighted Reports</h2>
+        <button class="mini-btn" id="crowdBtn">Simulate 15 citizen reports</button>
+        <div id="crowdOut" class="mod-out"></div></div>
+      <div class="dash-section"><h2>4. Dependency Graph</h2>
+        <button class="mini-btn mini-btn-danger" id="failBtn">Fail fuel depot</button>
+        <div id="depOut" class="mod-out"></div></div>
+      <div class="dash-section"><h2>5. Volunteer Matching</h2>
+        <button class="mini-btn" id="volBtn">Match volunteers</button>
+        <div id="volOut" class="mod-out"></div></div>
+      <div class="dash-section"><h2>6. Agency Conflict</h2>
+        <button class="mini-btn" id="conflictBtn">NDRF vs Police claim shelter</button>
+        <div id="conflictOut" class="mod-out"></div></div>
+      <div class="dash-section"><h2>7. Offline Mesh Relay</h2>
+        <button class="mini-btn" id="meshBtn">Send SOS with no internet</button>
+        <div id="meshOut" class="mod-out"></div></div>
+      <div class="dash-section"><h2>8. Donation Ledger</h2>
+        <button class="mini-btn" id="donateBtn">Add donation block</button>
+        <div id="ledgerOut" class="mod-out"></div></div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script src="{{ url_for('static', filename='simulation.js') }}"></script>
+{% endblock %}

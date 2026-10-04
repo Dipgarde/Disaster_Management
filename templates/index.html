@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block title %}Report an Incident - Disaster Management System{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Report an Incident</h1>
+
+    <form method="POST" class="report-form">
+        <input type="text" name="description" placeholder="Describe the incident" required>
+
+        <select name="disaster_type" class="admin-select" required>
+            <option value="" disabled selected>Disaster type</option>
+            <option>Flood</option>
+            <option>Earthquake</option>
+            <option>Cyclone</option>
+            <option>Fire</option>
+            <option>Landslide</option>
+        </select>
+
+        <select name="location" class="admin-select" required>
+            <option value="" disabled selected>Location</option>
+            <option>Nashik Central</option>
+            <option>Panchavati</option>
+            <option>Gangapur Road</option>
+            <option>College Road</option>
+        </select>
+
+        <select name="severity_score" class="admin-select" required>
+            <option value="" disabled selected>Severity (1-5)</option>
+            <option value="1">1 - Minor</option>
+            <option value="2">2 - Moderate</option>
+            <option value="3">3 - Serious</option>
+            <option value="4">4 - Critical</option>
+            <option value="5">5 - Catastrophic</option>
+        </select>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <h2>All Reports</h2>
+    <ul class="report-list">
+        {% for report in reports %}
+            <li>
+                <div>
+                    <span class="desc">{{ report[1] }}</span>
+                    <span class="badge badge-{{ 'high' if report[4] in ['Critical', 'High'] else ('medium' if report[4] == 'Medium' else 'low') }}">{{ report[4] }}</span>
+                    <br>
+                    <small class="time">{{ report[2] }} • {{ report[3] }} • {{ report[6] }}</small>
+                </div>
+                <span class="status status-{{ 'resolved' if report[5] == 'resolved' else 'active' }}">{{ report[5] | capitalize }}</span>
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+{% endblock %}

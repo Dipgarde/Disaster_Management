@@ -1,0 +1,113 @@
+{% extends "base.html" %}
+
+{% block title %}Admin Panel - Disaster Management System{% endblock %}
+
+{% block content %}
+    <div class="admin-layout">
+
+        <aside class="admin-sidebar">
+            <div class="admin-sidebar-title">ADMIN PANEL</div>
+            <a href="#" class="admin-nav-item admin-nav-active">📋 Manage Reports</a>
+            <a href="#" class="admin-nav-item">👥 Manage Users</a>
+            <a href="#" class="admin-nav-item">🚑 Manage Resources</a>
+            <a href="#" class="admin-nav-item">🏠 Manage Shelters</a>
+            <a href="#" class="admin-nav-item">🙋 Manage Volunteers</a>
+            <a href="#" class="admin-nav-item">⚙️ System Settings</a>
+        </aside>
+
+        <main class="admin-main">
+            <div class="admin-header-row">
+                <h1>Manage Reports</h1>
+                <div class="admin-filters">
+                    <select class="admin-select">
+                        <option>All Severity</option>
+                        <option>High</option>
+                        <option>Medium</option>
+                        <option>Low</option>
+                    </select>
+                    <select class="admin-select">
+                        <option>All Status</option>
+                        <option>Active</option>
+                        <option>Resolved</option>
+                    </select>
+                    <input type="text" class="admin-search" placeholder="🔍 Search reports...">
+                </div>
+            </div>
+
+            <table class="dash-table admin-table">
+                <thead>
+                    <tr>
+                        <th><input type="checkbox"></th>
+                        <th>ID</th>
+                        <th>Description</th>
+                        <th>Location</th>
+                        <th>Severity</th>
+                        <th>Status</th>
+                        <th>Reported</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td>#001</td>
+                        <td>Heavy flooding near main road</td>
+                        <td>Nashik Central</td>
+                        <td><span class="badge badge-high">High</span></td>
+                        <td><span class="status status-active">Active</span></td>
+                        <td>10 min ago</td>
+                        <td class="admin-actions">
+                            <button class="mini-btn">✔ Resolve</button>
+                            <button class="mini-btn mini-btn-danger">🗑</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td>#002</td>
+                        <td>Fallen tree blocking traffic</td>
+                        <td>Panchavati</td>
+                        <td><span class="badge badge-medium">Medium</span></td>
+                        <td><span class="status status-active">Active</span></td>
+                        <td>25 min ago</td>
+                        <td class="admin-actions">
+                            <button class="mini-btn">✔ Resolve</button>
+                            <button class="mini-btn mini-btn-danger">🗑</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td>#003</td>
+                        <td>Minor power outage reported</td>
+                        <td>College Road</td>
+                        <td><span class="badge badge-low">Low</span></td>
+                        <td><span class="status status-resolved">Resolved</span></td>
+                        <td>1 hour ago</td>
+                        <td class="admin-actions">
+                            <button class="mini-btn" disabled>✔ Resolved</button>
+                            <button class="mini-btn mini-btn-danger">🗑</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td>#004</td>
+                        <td>Waterlogging in residential area</td>
+                        <td>Gangapur Road</td>
+                        <td><span class="badge badge-medium">Medium</span></td>
+                        <td><span class="status status-active">Active</span></td>
+                        <td>2 hours ago</td>
+                        <td class="admin-actions">
+                            <button class="mini-btn">✔ Resolve</button>
+                            <button class="mini-btn mini-btn-danger">🗑</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="admin-bulk-bar">
+                <span>4 reports total</span>
+                <button class="qa-btn qa-outline">Export Selected</button>
+            </div>
+        </main>
+
+    </div>
+{% endblock %}
