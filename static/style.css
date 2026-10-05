@@ -1112,3 +1112,54 @@ button:hover { background-color: #0c8786; }
 .report-form input {
     width: 100%;
 }
+.report-form input[type="text"] {
+    padding: 10px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+.oauth-divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 20px 0;
+    color: #94a3b8;
+    font-size: 12px;
+}
+
+.oauth-divider::before,
+.oauth-divider::after {
+    content: "";
+    flex: 1;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.oauth-divider span {
+    padding: 0 12px;
+}
+
+.google-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    background: white;
+    color: #334155;
+    font-weight: 600;
+    font-size: 14px;
+    text-decoration: none;
+}
+
+.google-btn:hover {
+    background: #f8fafc;
+}
+
+.google-icon {
+    width: 18px;
+    height: 18px;
+}

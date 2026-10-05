@@ -1,12 +1,23 @@
+import os
 from flask import Flask, render_template, request, redirect, session
 import psycopg2
 from flask_bcrypt import Bcrypt
 from functools import wraps
+from authlib.integrations.flask_client import OAuth
 from config import Config
 
 app = Flask(__name__)
 app.secret_key = "change-this-to-something-random-later"
 bcrypt = Bcrypt(app)
+
+oauth = OAuth(app)
+google = oauth.register(
+    name="google",
+    client_id=Config.GOOGLE_CLIENT_ID,
+    client_secret=Config.GOOGLE_CLIENT_SECRET,
+    server_metadata_url="https://accounts.google.com/.well-known/openid-configuration",
+    client_kwargs={"scope": "openid email profile"},
+)
 
 ZONES = {
     "Nashik Central": (19.9975, 73.7898),
@@ -137,6 +148,46 @@ def login():
         return redirect("/admin" if user[4] == "admin" else "/dashboard")
 
     return render_template("login.html")
+
+@app.route("/google-login")
+def google_login():
+    redirect_uri = "http://127.0.0.1:5000/google-login/callback"
+    return google.authorize_redirect(redirect_uri)
+
+@app.route("/google-login/callback")
+def google_callback():
+    token = google.authorize_access_token()
+    user_info = token.get("userinfo")
+
+    if not user_info:
+        return redirect("/login")
+
+    email = user_info["email"]
+    name = user_info.get("name", email.split("@")[0])
+
+    conn = get_db_connection()
+    cur = conn.cursor()
+    cur.execute("SELECT id, name, email, role FROM users WHERE email = %s", (email,))
+    user = cur.fetchone()
+
+    if not user:
+        random_password = bcrypt.generate_password_hash(os.urandom(16).hex()).decode("utf-8")
+        cur.execute(
+            "INSERT INTO users (name, email, password_hash) VALUES (%s, %s, %s) RETURNING id, name, email, role",
+            (name, email, random_password)
+        )
+        conn.commit()
+        user = cur.fetchone()
+
+    cur.close()
+    conn.close()
+
+    session["user_id"] = user[0]
+    session["user_name"] = user[1]
+    session["user_email"] = user[2]
+    session["role"] = user[3]
+
+    return redirect("/admin" if user[3] == "admin" else "/dashboard")
 
 @app.route("/logout")
 def logout():
